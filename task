@@ -1,0 +1,3 @@
+openfeign - in pom.xml
+currencyExchangeProxy : add the method in controller
+enable @Feignclient("currency-exchange",url = "localhost:8000")
