@@ -1,3 +1,13 @@
-openfeign - in pom.xml
-currencyExchangeProxy : add the method in controller
-enable @Feignclient("currency-exchange",url = "localhost:8000")
+urls:
+
+Currency exchange service(8000)
+http://localhost:8000/currency-exchange/from/USD/to/INR
+
+
+Currency Conversion service(8100)
+http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
+http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
+
+Eureka
+http://localhost:8761/
+
