@@ -1,20 +1,26 @@
 urls:
 
-Currency exchange service(8000)
+@@@ Currency exchange service(8000)
 http://localhost:8000/currency-exchange/from/USD/to/INR
 
 
-Currency Conversion service(8100)
+@@@ Currency Conversion service(8100)
 http://localhost:8100/currency-conversion/from/USD/to/INR/quantity/10
 http://localhost:8100/currency-conversion-feign/from/USD/to/INR/quantity/10
 
-Eureka
+@@@ Eureka
 http://localhost:8761/
 
 
-api gateway (self host+ will be used application name+ url)
+@@@ api gateway (self host+ will be used application name+ url)
 
 http://localhost:8765/CURRENCY-EXCHANGE/currency-exchange/from/USD/to/BDT
 http://localhost:8765/CURRENCY-CONVERSION-SERVICE/currency-conversion/from/USD/to/INR/quantity/10
 http://localhost:8765/CURRENCY-CONVERSION-SERVICE/currency-conversion-feign/from/USD/to/INR/quantity/10
 
+@@@ Custom urls build : using ApiGateWayConfiguration configure, discovery locator: disable korte hobe
+
+http://localhost:8765/currency-exchange/from/USD/to/BDT
+http://localhost:8765/currency-conversion/from/USD/to/INR/quantity/10
+http://localhost:8765/currency-conversion-feign/from/USD/to/INR/quantity/10
+http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
