@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  currency-exchange-service:
+    image:
+      mdjewelrana/mircroservice-currency-exchange-service:0.0.1-SNAPSHOT
+    container_name: currency-exchange
+    ports:
+      - "8000:8000"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+
+  currency-conversion-service:
+    image:
+      mdjewelrana/mircroservice-currency-conversion-service:0.0.1-SNAPSHOT
+    container_name: currency-conversion
+    ports:
+      - "8100:8100"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+  api-gateway:
+    image:
+      mdjewelrana/mircroservice-api-gateway:0.0.1-SNAPSHOT
+    container_name: api-gateway
+    ports:
+      - "8765:8765"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+    environment:
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka
+      MANAGEMENT.ZIPKIN.TRACING.ENDPOINT: http://zipkin-server:9411/api/v2/spans
+
+
+  naming-server:
+    image:
+      mdjewelrana/mircroservice-naming-server:0.0.1-SNAPSHOT
+    container_name: naming-server
+    ports:
+      - "8761:8761"
+    networks:
+      - currency-network
+    depends_on:
+      - naming-server
+
+#recomended for  debuging guide
+  zipkin-server:
+    image: openzipkin/zipkin:2.23
+    #mem_limit: 300m
+    ports:
+      - "9411:9411"
+    networks:
+      - currency-network
+    restart: always #Restart if there is a problem starting up
+
+networks:
+  currency-network:
+
+#do build all the image then
+#docker-compose up : using this commad all the service are run...
+#problem arise in code where localhost exist: this could be replace with application name
