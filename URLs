@@ -34,3 +34,7 @@ http://localhost:8765/currency-conversion-new/from/USD/to/INR/quantity/10
 
 @@@ see more about resilience
 https://resilience4j.readme.io/docs/circuitbreaker
+
+@@@ zipkin
+@@@ make any request and see the matrics, logs
+http://localhost:9411
