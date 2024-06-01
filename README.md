@@ -26,7 +26,7 @@
 
 
 ## Step 2:
->###Container Run
+### Container Run
 >>hostPort:containerPort and when docker desktop is restart the container is run automatically
 ```
   docker run -p 5000:5000 -d —restart=always projectName:tagName
